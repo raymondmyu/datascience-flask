@@ -1,0 +1,74 @@
+{% extends "header.html" %}
+{% block body %}
+
+<style type="text/css">
+ 
+.network {
+ 
+  display:block;
+ 
+  width:100%;
+ 
+  height:800px;
+ 
+/*   border:solid; */
+ 
+/*   background-color:white; */
+ 
+}
+ 
+</style>
+
+<div class="container-fluid network">Network Graph</div>
+
+<script>
+ 
+    var nodes = [
+ 
+       {
+ 
+         id:"a",
+ 
+         label:"A"
+ 
+       },
+ 
+       {
+ 
+         id:"b",
+ 
+         label:"B"
+ 
+       }
+ 
+];
+ 
+var edges = [
+ 
+       {
+ 
+         from:"a",
+ 
+         to:"b"
+ 
+       }
+ 
+];
+ 
+   var data = {
+ 
+        nodes: nodes,
+ 
+        edges: edges
+ 
+    };    
+    
+    var options = {};
+ 
+    var container = document.querySelector('.network');
+ 
+    network = new vis.Network(container, data, options);
+ 
+</script>
+
+{% endblock %}
