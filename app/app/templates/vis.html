@@ -4,17 +4,9 @@
 <style type="text/css">
  
 .network {
- 
   display:block;
- 
   width:100%;
- 
-  height:800px;
- 
-/*   border:solid; */
- 
-/*   background-color:white; */
- 
+  height:1200px;
 }
  
 </style>
@@ -22,38 +14,53 @@
 <div class="container-fluid network">Network Graph</div>
 
 <script>
+    var nodes = [];
+    var edges = [];
+    
+    $.ajax({
+        url: '/static/io/nodes.json',
+        async: false,
+        dataType: 'json',
+        success: function(d) { nodes = d }
+    })
+    $.ajax({
+        url: '/static/io/edges.json',
+        async: false,
+        dataType: 'json',
+        success: function(d) { edges = d }
+    })
+    
+//     var nodes = [
  
-    var nodes = [
+//        {
  
-       {
+//          id:"a",
  
-         id:"a",
+//          label:"A"
  
-         label:"A"
+//        },
  
-       },
+//        {
  
-       {
+//          id:"b",
  
-         id:"b",
+//          label:"B"
  
-         label:"B"
+//        }
  
-       }
+// ];
  
-];
+// var edges = [
  
-var edges = [
+//        {
  
-       {
+//          from:"a",
  
-         from:"a",
+//          to:"b"
  
-         to:"b"
+//        }
  
-       }
- 
-];
+// ];
  
    var data = {
  
@@ -63,7 +70,96 @@ var edges = [
  
     };    
     
-    var options = {};
+    var options = {
+groups:{"source1":{
+ 
+          color:{
+ 
+             background:'red',
+ 
+             border:'maroon'
+ 
+                },
+ 
+          shadow:{enabled:true,
+ 
+                  color:'rgba(0,0,0,0.5)',
+ 
+                  x:6,
+ 
+                  y:6 
+ 
+                 }
+ 
+              
+ 
+           },
+ 
+           "source2":{
+ 
+          color:{background:'blue',
+ 
+             border:'navy'},
+ 
+          shadow:{enabled:true,
+ 
+                  color:'rgba(0,0,0,0.5)',
+ 
+                  x:6,
+ 
+                  y:6 
+ 
+                 }
+ 
+              
+ 
+           },
+ 
+           "word":{
+ 
+          color:{background:'white',
+ 
+             border:'darkGreen'},
+ 
+          shadow:{enabled:true,
+ 
+                  color:'rgba(0,0,0,0.5)',
+ 
+                  x:6,
+ 
+                  y:6 
+ 
+                 }
+ 
+              
+ 
+           }, 
+ 
+          "person":{
+ 
+          color:{background:'gold',
+ 
+             border:'brown'},
+ 
+          font:{color:'black',size:14},
+ 
+           shadow:{enabled:true,
+ 
+                  color:'rgba(0,0,0,0.5)',
+ 
+                  x:6,
+ 
+                  y:6 
+ 
+                 }
+ 
+              
+ 
+           }
+       }
+        
+        
+    };
  
     var container = document.querySelector('.network');
  
